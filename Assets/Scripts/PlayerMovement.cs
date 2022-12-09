@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         
         anim.Play("Attack");
         yield return new WaitForSeconds(0.3f);
-        sword.gameObject.SetActive(true);
+        //sword.gameObject.SetActive(true);
         yield return new WaitForSeconds(attackTime-0.3f);
         isAttacking = false;
         canAttack = true;

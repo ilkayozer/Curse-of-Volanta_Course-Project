@@ -11,9 +11,7 @@ public class EnemyMovement : MonoBehaviour
     public float enemyMovementSpeed;
 
     public Transform playerTransform;
-    private Vector2 dirVec;
-    private Vector2 playerPos;
-    private Vector2 enemyPos;
+    private float dirEnemy;
 
     void Start()
     {
@@ -25,11 +23,17 @@ public class EnemyMovement : MonoBehaviour
     
     void Update()
     {
-        playerPos = playerTransform.position;
-        enemyPos = transform.position;   
-        dirVec = enemyPos - playerPos;
+        dirEnemy = playerTransform.position.x - transform.position.x;
 
-        rb.velocity = new Vector2(-dirVec.x * enemyMovementSpeed, rb.velocity.y);
+        if (dirEnemy > 0f)
+        {
+            rb.velocity = new Vector2(enemyMovementSpeed, rb.velocity.y);
+        }
+        else if (dirEnemy < 0f)
+        {
+            rb.velocity = new Vector2(-enemyMovementSpeed, rb.velocity.y);
+        }
+        
     }
 
 }
