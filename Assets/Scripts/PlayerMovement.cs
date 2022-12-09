@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     private float attackTime = 0.6f;
 
-    public float movementSpeed = 4f;
+    public float playerMovementSpeed = 4f;
     public float jumpForce = 5f;
 
     private float offsetX = 0.47f;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(dirX * playerMovementSpeed, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack && IsGrounded() )
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack && IsGrounded())
         {
             rb.velocity = new Vector2(0f, 0f);
             StartCoroutine(Attack());
