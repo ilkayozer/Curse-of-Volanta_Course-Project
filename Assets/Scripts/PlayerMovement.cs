@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer playerSprite;
     private BoxCollider2D boxcol;
+    public BoxCollider2D swordCollider;
     public GameObject sword;
     public LayerMask jumpableGround;
 
@@ -26,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     private float offsetX = 0.47f;
     private float offsetY = -0.32f;
+
+    private float swordRightoffsetX = -0.539f;
+    private float swordLeftoffsetX = -2.3f;
+    private float swordoffsetY = -0.341f;
+
     private float dirX;
 
     private enum MovementState { idle, running, jumping, jumptofalling}
@@ -75,12 +81,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dirX > 0f)
         {
+            swordCollider.offset = new Vector2(swordRightoffsetX, swordoffsetY);
             boxcol.offset = new Vector2(-offsetX, offsetY);
             playerSprite.flipX = false;
             state = MovementState.running;
         }
         else if (dirX < 0f)
         {
+            swordCollider.offset = new Vector2(swordLeftoffsetX, swordoffsetY);
             boxcol.offset = new Vector2(offsetX, offsetY);
             playerSprite.flipX = true;
             state = MovementState.running;

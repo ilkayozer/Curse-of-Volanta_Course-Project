@@ -10,9 +10,9 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer enemySprite;
     public float enemyMovementSpeed;
 
+    public Transform playerTransform;
     private Vector2 dirVec;
-
-    public Vector2 playerPos;
+    private Vector2 playerPos;
     private Vector2 enemyPos;
 
     void Start()
@@ -25,9 +25,11 @@ public class EnemyMovement : MonoBehaviour
     
     void Update()
     {
+        playerPos = playerTransform.position;
         enemyPos = transform.position;   
         dirVec = enemyPos - playerPos;
 
-
+        rb.velocity = new Vector2(-dirVec.x * enemyMovementSpeed, rb.velocity.y);
     }
+
 }
