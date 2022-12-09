@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool isDashing = false;
     public float dashForce = 10f;
-    private float dashTime = 0.6f;
+    private float dashTime = 0.4f;
     private float dashCooldown = 0.1f;
 
     public float movementSpeed = 4f;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float offsetY = -0.32f;
     private float dirX;
 
-    private enum MovementState { idle, running, jumping, jumptofalling}
+    private enum MovementState { idle, running, jumping, jumptofalling, dash}
     private MovementState state;
 
     void Start()
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded())
         {
             StartCoroutine(Dash());
         }
@@ -109,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(dashForce, 0f);
         }
+        anim.Play("Dash");
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
