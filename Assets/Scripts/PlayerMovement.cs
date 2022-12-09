@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer playerSprite;
     private BoxCollider2D boxcol;
+    public GameObject sword;
     public LayerMask jumpableGround;
 
     private bool canDash = true;
@@ -16,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private float dashTime = 0.4f;
     private float dashCooldown = 0.1f;
 
+    private bool canAttack = true;
+    private bool isAttacking = false;
+    private float attackTime = 0.6f;
+
     public float movementSpeed = 4f;
     public float jumpForce = 5f;
 
@@ -23,11 +28,12 @@ public class PlayerMovement : MonoBehaviour
     private float offsetY = -0.32f;
     private float dirX;
 
-    private enum MovementState { idle, running, jumping, jumptofalling, dash}
+    private enum MovementState { idle, running, jumping, jumptofalling}
     private MovementState state;
 
     void Start()
     {
+        sword.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
@@ -37,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDashing)
+        if (isDashing || isAttacking)
         {
             return;
         }
@@ -55,14 +61,18 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack && IsGrounded() )
+        {
+            rb.velocity = new Vector2(0f, 0f);
+            StartCoroutine(Attack());
+        }
+
         UpdateAnimationState();
 
     }
 
     private void UpdateAnimationState()
     {
-        
-
         if (dirX > 0f)
         {
             boxcol.offset = new Vector2(-offsetX, offsetY);
@@ -114,6 +124,21 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash= true;
+    }
+
+    private IEnumerator Attack()
+    {
+        canAttack = false;
+        isAttacking = true;
+        
+        anim.Play("Attack");
+        yield return new WaitForSeconds(0.3f);
+        sword.gameObject.SetActive(true);
+        yield return new WaitForSeconds(attackTime-0.3f);
+        isAttacking = false;
+        canAttack = true;
+        sword.gameObject.SetActive(false);
+
     }
 
 }
