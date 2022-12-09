@@ -10608,9 +10608,9 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
+  dashForce: 10
   movementSpeed: 7
   jumpForce: 7
-  dashForce: 10
 --- !u!95 &974739556
 Animator:
   serializedVersion: 4

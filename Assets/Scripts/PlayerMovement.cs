@@ -10,16 +10,21 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxcol;
     public LayerMask jumpableGround;
 
+    private bool canDash = true;
+    private bool isDashing = false;
+    public float dashForce = 10f;
+    private float dashTime = 0.6f;
+    private float dashCooldown = 0.1f;
+
     public float movementSpeed = 4f;
     public float jumpForce = 5f;
-    public float dashForce = 10f;
 
-    private bool dashActive;
     private float offsetX = 0.47f;
     private float offsetY = -0.32f;
     private float dirX;
 
-    private enum MovementState { idle, running, jumping, jumptofalling, dash}
+    private enum MovementState { idle, running, jumping, jumptofalling}
+    private MovementState state;
 
     void Start()
     {
@@ -32,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
 
@@ -40,27 +50,18 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        /*if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            dashActive= true;
-            if (playerSprite.flipX == false)
-            {
-                rb.velocity = new Vector2(dashForce, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-dashForce, rb.velocity.y);
-            }
-        }*/
+            StartCoroutine(Dash());
+        }
 
         UpdateAnimationState();
-        dashActive= false;
+
     }
 
     private void UpdateAnimationState()
     {
-        MovementState state;
-
+        
 
         if (dirX > 0f)
         {
@@ -95,4 +96,23 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.BoxCast(boxcol.bounds.center, boxcol.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
+
+    private IEnumerator Dash()
+    {
+        canDash= false;
+        isDashing= true;
+        if (playerSprite.flipX)
+        {
+            rb.velocity = new Vector2(-dashForce, 0f);
+        }
+        else
+        {
+            rb.velocity = new Vector2(dashForce, 0f);
+        }
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash= true;
+    }
+
 }
