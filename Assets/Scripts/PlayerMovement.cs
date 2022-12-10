@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private SpriteRenderer playerSprite;
     private BoxCollider2D boxcol;
-    public BoxCollider2D swordCollider;
-    public GameObject sword;
     public LayerMask jumpableGround;
 
     private bool canDash = true;
@@ -25,13 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerMovementSpeed = 4f;
     public float jumpForce = 5f;
 
-    private float offsetX = 0.47f;
-    private float offsetY = -0.32f;
-
-    private float swordRightoffsetX = -0.539f;
-    private float swordLeftoffsetX = -2.3f;
-    private float swordoffsetY = -0.64f;
-
+    public GameObject sword;
     private float dirX;
 
     private enum MovementState { idle, running, jumping, jumptofalling}
@@ -39,11 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        sword.gameObject.SetActive(false);
+        boxcol= GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        playerSprite = GetComponent<SpriteRenderer>();
-        boxcol = GetComponent<BoxCollider2D>();
     }
 
 
@@ -81,16 +71,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dirX > 0f)
         {
-            swordCollider.offset = new Vector2(swordRightoffsetX, swordoffsetY);
-            boxcol.offset = new Vector2(-offsetX, offsetY);
-            playerSprite.flipX = false;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);           
             state = MovementState.running;
         }
         else if (dirX < 0f)
         {
-            swordCollider.offset = new Vector2(swordLeftoffsetX, swordoffsetY);
-            boxcol.offset = new Vector2(offsetX, offsetY);
-            playerSprite.flipX = true;
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             state = MovementState.running;
         }
         else
@@ -119,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash= false;
         isDashing= true;
-        if (playerSprite.flipX)
+        if (transform.rotation.eulerAngles.y == 180f)
         {
             rb.velocity = new Vector2(-dashForce, 0f);
         }
@@ -141,11 +127,10 @@ public class PlayerMovement : MonoBehaviour
         
         anim.Play("Attack");
         yield return new WaitForSeconds(0.3f);
-        sword.gameObject.SetActive(true);
-        yield return new WaitForSeconds(attackTime-0.3f);
+        sword.GetComponent<SwordSwing>().Attack();
+        yield return new WaitForSeconds(attackTime - 0.3f);
         isAttacking = false;
         canAttack = true;
-        sword.gameObject.SetActive(false);
 
     }
 

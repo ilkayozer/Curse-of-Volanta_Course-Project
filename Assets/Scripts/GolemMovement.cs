@@ -55,24 +55,15 @@ public class GolemMovement : MonoBehaviour
             state = MovementState.idle;
         }
 
+        
         anim.SetInteger("state", (int)state);
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Sword")
-        {
-            rb.velocity = new Vector2(0f, 0f);
-            StartCoroutine(Death());
-        }
-    }
-
-    private IEnumerator Death()
+    public IEnumerator Death()
     {
         anim.Play("Golem_Death_A");
         yield return new WaitForSeconds(0.8f);
-
         Destroy(gameObject);
 
     }

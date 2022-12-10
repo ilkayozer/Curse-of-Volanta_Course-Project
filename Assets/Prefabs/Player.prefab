@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3111296297635594082
+--- !u!1 &1915837145
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3111296297635594085}
-  - component: {fileID: 3111296297635594084}
-  m_Layer: 0
+  - component: {fileID: 1915837146}
+  - component: {fileID: 1915837147}
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3111296297635594085
+--- !u!4 &1915837146
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111296297635594082}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5910276, w: 0.80665135}
-  m_LocalPosition: {x: 1.3248513, y: 0.053377926, z: 0}
+  m_GameObject: {fileID: 1915837145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.892, y: -0.463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3111296297761294651}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -72.46}
---- !u!61 &3111296297635594084
-BoxCollider2D:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915837147
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111296297635594082}
+  m_GameObject: {fileID: 1915837145}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08398545, y: -0.43751335}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.1679707, y: 0.956841}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90389a6d9cfa1b7449e2b20b743ac4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSize: {x: 1.3, y: 2}
 --- !u!1 &3111296297761294599
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +61,7 @@ GameObject:
   - component: {fileID: 3111296297761294653}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +78,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3111296297635594085}
+  - {fileID: 1915837146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,14 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234b40c5d959f4c46bc85a5f04388360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordCollider: {fileID: 0}
-  sword: {fileID: 3111296297635594082}
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
   dashForce: 10
-  playerMovementSpeed: 4
+  playerMovementSpeed: 7
   jumpForce: 7
+  sword: {fileID: 1915837145}
 --- !u!95 &3111296297761294653
 Animator:
   serializedVersion: 4
