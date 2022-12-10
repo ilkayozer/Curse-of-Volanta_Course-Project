@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float swordRightoffsetX = -0.539f;
     private float swordLeftoffsetX = -2.3f;
-    private float swordoffsetY = -0.341f;
+    private float swordoffsetY = -0.64f;
 
     private float dirX;
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -8,23 +7,23 @@ public class GolemMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private SpriteRenderer enemySprite;
-    public float enemyMovementSpeed;
+    private SpriteRenderer golemSprite;
+    public float golemMovementSpeed;
 
     public Transform playerTransform;
     private float dirEnemy;
 
-    private enum MovementState { idle, running}
+    private enum MovementState { idle, running }
     private MovementState state;
 
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();
-        anim= GetComponent<Animator>();
-        enemySprite= GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        golemSprite = GetComponent<SpriteRenderer>();
     }
 
-    
+
     void Update()
     {
         dirEnemy = playerTransform.position.x - transform.position.x;
@@ -40,14 +39,14 @@ public class GolemMovement : MonoBehaviour
         {
             if (dirEnemy > 0f)
             {
-                rb.velocity = new Vector2(enemyMovementSpeed, rb.velocity.y);
-                enemySprite.flipX = false;
+                rb.velocity = new Vector2(golemMovementSpeed, rb.velocity.y);
+                golemSprite.flipX = false;
                 state = MovementState.running;
             }
             else if (dirEnemy < 0f)
             {
-                rb.velocity = new Vector2(-enemyMovementSpeed, rb.velocity.y);
-                enemySprite.flipX = true;
+                rb.velocity = new Vector2(-golemMovementSpeed, rb.velocity.y);
+                golemSprite.flipX = true;
                 state = MovementState.running;
             }
         }
@@ -57,12 +56,12 @@ public class GolemMovement : MonoBehaviour
         }
 
         anim.SetInteger("state", (int)state);
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Sword")
+        if(collision.gameObject.tag == "Sword")
         {
             rb.velocity = new Vector2(0f, 0f);
             StartCoroutine(Death());
@@ -72,9 +71,10 @@ public class GolemMovement : MonoBehaviour
     private IEnumerator Death()
     {
         anim.Play("Golem_Death_A");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         Destroy(gameObject);
 
     }
+
 }
