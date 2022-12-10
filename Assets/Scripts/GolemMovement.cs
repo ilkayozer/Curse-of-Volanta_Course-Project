@@ -33,6 +33,7 @@ public class GolemMovement : MonoBehaviour
         if (dirEnemy < 1f && dirEnemy > -1f)
         {
             rb.velocity = new Vector2(0f, 0f);
+            state = MovementState.idle;
         }
 
         else if (dirEnemy < 20f && dirEnemy > -20f)
@@ -40,33 +41,12 @@ public class GolemMovement : MonoBehaviour
             if (dirEnemy > 0f)
             {
                 rb.velocity = new Vector2(enemyMovementSpeed, rb.velocity.y);
-            }
-            else if (dirEnemy < 0f)
-            {
-                rb.velocity = new Vector2(-enemyMovementSpeed, rb.velocity.y);
-            }
-        }
-        
-        
-        UpdateAnimationState();
-    }
-
-    private void UpdateAnimationState()
-    {
-        if (dirEnemy < 1f && dirEnemy > -1f)
-        {
-            state = MovementState.idle;
-        }
-
-        else if(dirEnemy < 20f && dirEnemy > -20f)
-        {
-            if (dirEnemy > 0f)
-            {
                 enemySprite.flipX = false;
                 state = MovementState.running;
             }
             else if (dirEnemy < 0f)
             {
+                rb.velocity = new Vector2(-enemyMovementSpeed, rb.velocity.y);
                 enemySprite.flipX = true;
                 state = MovementState.running;
             }
@@ -77,6 +57,7 @@ public class GolemMovement : MonoBehaviour
         }
 
         anim.SetInteger("state", (int)state);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
