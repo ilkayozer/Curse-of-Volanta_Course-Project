@@ -11117,22 +11117,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1977106343, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: attackSize.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1977106343, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: attackSize.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5633475780670597275, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 974739554}
-    - target: {fileID: 5633475780670597275, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: golemMovementSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6467748192554145443, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: m_Name
       value: Golem
