@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxcol;
     public LayerMask jumpableGround;
 
+    public int health = 100;
+
     private bool canDash = true;
     private bool isDashing = false;
     public float dashForce = 10f;
@@ -19,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canAttack = true;
     private bool isAttacking = false;
     private float attackTime = 0.6f;
+    private bool isHitting = false;
+    private bool isDead = false;
 
     public float playerMovementSpeed = 4f;
     public float jumpForce = 5f;
@@ -39,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (isDashing || isAttacking)
         {
             return;
@@ -122,16 +131,38 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        canAttack = false;
-        isAttacking = true;
-        
-        anim.Play("Attack");
-        yield return new WaitForSeconds(0.3f);
-        sword.GetComponent<SwordSwing>().Attack();
-        yield return new WaitForSeconds(attackTime - 0.3f);
-        isAttacking = false;
-        canAttack = true;
+        if (!isHitting)
+        {
+            canAttack = false;
+            isAttacking = true;
 
+            anim.Play("Attack");
+            yield return new WaitForSeconds(0.3f);
+            sword.GetComponent<SwordSwing>().Attack();
+            yield return new WaitForSeconds(attackTime - 0.3f);
+            isAttacking = false;         
+        }
+        canAttack = true;
+    }
+
+    public IEnumerator PlayerHit()
+    {
+        if (!isDashing)
+        {
+            isHitting = true;
+            anim.Play("Hurt");
+            yield return new WaitForSeconds(0.4f);
+        }
+        isHitting = false;
+    }
+
+    public IEnumerator Death()
+    {
+        rb.velocity = new Vector2(0f, 0f);
+        isDead = true;
+        anim.Play("Death");
+        yield return new WaitForSeconds(1.1f);
+        Destroy(gameObject);
     }
 
 }

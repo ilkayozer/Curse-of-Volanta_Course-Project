@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11117,61 +11117,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1977106343, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
+      propertyPath: attackSize.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977106343, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
+      propertyPath: attackSize.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5633475780670597275, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 974739554}
     - target: {fileID: 5633475780670597275, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: enemyMovementSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5633475780670597275, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: golemMovementSpeed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6467748192554145443, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: m_Name
       value: Golem
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145448, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0056887
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145448, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Size.y
-      value: 0.81586075
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145448, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0028443336
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145448, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.092069626
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145450, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0056887
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145450, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3405745
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145450, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0028443336
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145450, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.17028725
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145453, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: playerTransform
-      value: 
-      objectReference: {fileID: 974739554}
-    - target: {fileID: 6467748192554145453, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: enemyMovementSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6467748192554145454, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
       propertyPath: m_RootOrder
@@ -11217,10 +11181,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6467748192554145455, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6467748192554145453, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c28ea7e9cb37124397669f9c40a4b82, type: 3}
