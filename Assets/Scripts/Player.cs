@@ -14,12 +14,19 @@ public class Player : Creature
 
     public float jumpForce = 1000f;
 
-    private bool canDash;
+    [Header("Dash Attributes")]
+    private bool canDash = true;
+    private bool isDashing = false;
+    public float dashForce;
+    public float dashTime;
+    public float dashCoolDown;
+
 
     void Start()
     {
         boxcol= GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         dir.y = 0;
     }
 
@@ -36,9 +43,9 @@ public class Player : Creature
 
         rb.velocity = new Vector2(dir.x * movementSpeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //StartCoroutine(Dash());
+            StartCoroutine(Dash());
         }
 
         updateAnim.UpdateAnimation(dir);
@@ -69,7 +76,7 @@ public class Player : Creature
         anim.Play("Dash");
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(dashCoolDown);
         canDash = true;
     }
 
