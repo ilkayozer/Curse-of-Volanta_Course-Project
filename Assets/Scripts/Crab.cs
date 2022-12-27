@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class GolemMovement : MonoBehaviour
+public class Crab : Creature
 {
-    private Rigidbody2D rb;
-    private Animator anim;
-    private SpriteRenderer golemSprite;
-    public float golemMovementSpeed;
+    public float crabMovementSpeed;
 
     public Transform playerTransform;
     private float dirEnemy;
@@ -16,12 +12,7 @@ public class GolemMovement : MonoBehaviour
     public GameObject ability;
     private bool canAttack = true;
     private bool isAttacking = false;
-    private bool isDead = false;
     private float attackTime = 1f;
-    
-    public int health = 100;
-
-    private bool isHitting = false;
 
     private enum MovementState { idle, running }
     private MovementState state;
@@ -30,7 +21,6 @@ public class GolemMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        golemSprite = GetComponent<SpriteRenderer>();
     }
 
 
@@ -62,13 +52,13 @@ public class GolemMovement : MonoBehaviour
         {
             if (dirEnemy > 0f)
             {
-                rb.velocity = new Vector2(golemMovementSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(crabMovementSpeed, rb.velocity.y);
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 state = MovementState.running;
             }
             else if (dirEnemy < 0f)
             {
-                rb.velocity = new Vector2(-golemMovementSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(-crabMovementSpeed, rb.velocity.y);
                 transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 state = MovementState.running;
             }
@@ -78,44 +68,25 @@ public class GolemMovement : MonoBehaviour
             state = MovementState.idle;
         }
 
-        
+
         anim.SetInteger("state", (int)state);
 
     }
 
     private IEnumerator Attack()
     {
-        
+
         if (!isHitting)
         {
             canAttack = false;
             isAttacking = true;
-            anim.Play("Golem_Attack_3");
+            anim.Play("Crab_Attack_A");
             yield return new WaitForSeconds(0.4f);
             ability.GetComponent<EnemyAttack>().Attack();
             yield return new WaitForSeconds(attackTime - 0.4f);
             isAttacking = false;
             canAttack = true;
         }
-    }
-
-    public IEnumerator GolemHit()
-    {
-        isHitting = true;
-        anim.Play("Golem_Hit_A");
-        yield return new WaitForSeconds(0.6f);
-        isHitting = false;
-    }
-
-
-    public IEnumerator Death()
-    {
-        rb.velocity = new Vector2(0f, 0f);
-        isDead = true;
-        anim.Play("Golem_Death_A");
-        yield return new WaitForSeconds(0.8f);
-        Destroy(gameObject);
-
     }
 
 }

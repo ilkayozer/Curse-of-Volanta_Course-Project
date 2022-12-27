@@ -14,13 +14,13 @@ public class EnemyAttack : MonoBehaviour
         {
             if (collider.gameObject.tag == "Player")
             {
-                if (collider.GetComponent<PlayerMovement>().health == 0)
+                if (collider.GetComponent<Player>().health == 0)
                 {
-                    StartCoroutine(collider.GetComponent<PlayerMovement>().Death());
+                    StartCoroutine(collider.GetComponent<Player>().Death());
                 }
                 else
                 {
-                    StartCoroutine(collider.GetComponent<PlayerMovement>().PlayerHit());
+                    StartCoroutine(collider.GetComponent<Player>().PlayerHit());
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool isDashing = false;
     public float dashForce = 10f;
-    private float dashTime = 0.4f;
-    private float dashCooldown = 0.1f;
+    private float dashTime = 0.3f;
+    private float dashCooldown = 0.4f;
 
     private bool canAttack = true;
     private bool isAttacking = false;
