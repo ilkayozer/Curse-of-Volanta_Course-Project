@@ -10473,11 +10473,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3111296297761294653, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
   m_PrefabInstance: {fileID: 3111296297862533465}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1027754956 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3111296297761294598, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
-  m_PrefabInstance: {fileID: 3111296297862533465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &1027754957 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3111296297761294649, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
@@ -10505,11 +10500,11 @@ MonoBehaviour:
   ability: {fileID: 0}
   movementSpeed: 7
   updateAnim: {fileID: 1027754960}
-  boxcol: {fileID: 1027754956}
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 1000
+  jumpForce: 7
+  playerMovementSpeed: 7
 --- !u!114 &1027754960
 MonoBehaviour:
   m_ObjectHideFlags: 0
