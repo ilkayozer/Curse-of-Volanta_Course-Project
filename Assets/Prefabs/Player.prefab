@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3111296297761294650}
   - component: {fileID: 3111296297761294653}
   - component: {fileID: 3111296297862533467}
+  - component: {fileID: 8449299965450197006}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -229,7 +230,13 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  health: 100
+  healthBar: {fileID: 0}
+  currentHealth: 0
+  maxHealth: 100
+  gemBar: {fileID: 0}
+  minGem: 0
+  maxGem: 20
+  currentGem: 0
   dashForce: 10
   playerMovementSpeed: 7
   jumpForce: 7
@@ -268,3 +275,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   el: {fileID: 1861709978}
   energyBolt: {fileID: 2642203893350166572, guid: 66d9152dda7b3694ab3d8b456704e5a1, type: 3}
+--- !u!114 &8449299965450197006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111296297761294599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae4c654e92557641b8790d9e32d5c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 0
+  healthBar: {fileID: 0}
+  currentHealth: 0
+  maxHealth: 100
+  gemBar: {fileID: 0}
+  minGem: 0
+  maxGem: 20
+  currentGem: 0
+  dashForce: 10
+  playerMovementSpeed: 4
+  jumpForce: 5
+  sword: {fileID: 0}

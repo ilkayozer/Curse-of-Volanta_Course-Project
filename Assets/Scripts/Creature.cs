@@ -14,12 +14,26 @@ public class Creature : MonoBehaviour
 
     public GameObject gem;
 
-    public IEnumerator TakeDamage()
+    public HealthBar healthBar;
+    public int maxHealth;
+    public int currentHealth;
+
+    public IEnumerator TakeDamage(int damage)
     {
-        isHitting = true;
-        anim.Play("TakeDamage");
-        yield return new WaitForSeconds(0.8f);
-        isHitting = false;
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(Death());
+        }
+        else
+        {
+            isHitting = true;
+            anim.Play("TakeDamage");
+            yield return new WaitForSeconds(0.8f);
+            isHitting = false;
+        }
+        
     }
 
     public IEnumerator Death()
@@ -28,7 +42,7 @@ public class Creature : MonoBehaviour
         isDead = true;
         anim.Play("Death");
         Instantiate(gem, transform.position, transform.rotation);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);       
     }
 }

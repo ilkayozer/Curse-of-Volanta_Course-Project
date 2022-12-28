@@ -9,10 +9,6 @@ public class Boss : Creature
     public Transform playerTransform;
     private float dirEnemy;
 
-    private HealthBar healthBar;
-    private int maxHealth = 100;
-    private int hp;
-
     public GameObject ability;
     private bool canAttack = true;
     private bool isAttacking = false;
@@ -25,8 +21,8 @@ public class Boss : Creature
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        hp = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
 

@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public int maxHealth = 100;
 
+    public GemBar gemBar;
+    public int minGem = 0;
+    public int maxGem = 100;
+    public int currentGem;
+
     private bool canDash = true;
     private bool isDashing = false;
     public float dashForce = 10f;
@@ -39,10 +44,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        boxcol= GetComponent<BoxCollider2D>();
+        healthBar.SetMaxHealth(maxHealth);
+
+        currentGem = minGem;
+        gemBar.SetMinGem(minGem, maxGem);
+
+        boxcol = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        healthBar.SetMaxHealth(maxHealth);
+        
     }
 
 
@@ -59,7 +69,8 @@ public class Player : MonoBehaviour
         }
 
         dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * playerMovementSpeed, rb.velocity.y);
+        Vector2 ilerle = new(dirX * playerMovementSpeed, rb.velocity.y);
+        rb.velocity = ilerle;
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -183,5 +194,20 @@ public class Player : MonoBehaviour
     private void ReloadLevel()
     {
         SceneManager.LoadScene("Game Over Screen");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Gem1")
+        {
+            Destroy(collision.gameObject);
+            currentGem++;
+        }
+        else if (collision.gameObject.tag == "Gem5")
+        {
+            Destroy(collision.gameObject);
+            currentGem += 5;
+        }
+        gemBar.SetGem(currentGem);
     }
 }
