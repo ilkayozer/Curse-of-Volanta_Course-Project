@@ -27,6 +27,5 @@ public class Creature : MonoBehaviour
         anim.Play("Death");
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
-
     }
 }
