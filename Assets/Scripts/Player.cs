@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxcol;
     public LayerMask jumpableGround;
 
+    private HealthBar healthBar;
     public int health = 100;
+    private int maxHealth = 100;
 
     private bool canDash = true;
     private bool isDashing = false;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
         boxcol= GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        healthBar.SetMaxHealth(maxHealth);
     }
 
 
