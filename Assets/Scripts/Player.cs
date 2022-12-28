@@ -171,6 +171,6 @@ public class Player : MonoBehaviour
 
     private void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Game Over Screen");
     }
 }

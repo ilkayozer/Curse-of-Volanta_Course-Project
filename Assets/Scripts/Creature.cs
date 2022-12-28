@@ -19,7 +19,6 @@ public class Creature : MonoBehaviour
         isHitting = true;
         anim.Play("TakeDamage");
         yield return new WaitForSeconds(0.8f);
-        Debug.Log("geldim");
         isHitting = false;
     }
 
