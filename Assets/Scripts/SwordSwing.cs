@@ -13,7 +13,7 @@ public class SwordSwing : MonoBehaviour
         {
             if (collider.gameObject.tag == "Enemy")
             {
-                if (collider.GetComponent<Creature>().health == 0)
+                if (collider.GetComponent<Creature>().health <= 0)
                 {
                     StartCoroutine(collider.GetComponent<Creature>().Death());
                 }

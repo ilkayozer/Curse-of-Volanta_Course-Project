@@ -28,7 +28,7 @@ public class EnergyBolt : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            if (collision.GetComponent<Creature>().health == 0)
+            if (collision.GetComponent<Creature>().health <= 0)
             {
                 StartCoroutine(collision.GetComponent<Creature>().Death());
             }

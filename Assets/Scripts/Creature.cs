@@ -12,6 +12,8 @@ public class Creature : MonoBehaviour
 
     public bool isDead = false;
 
+    public GameObject gem;
+
     public IEnumerator TakeDamage()
     {
         isHitting = true;
@@ -25,7 +27,8 @@ public class Creature : MonoBehaviour
         rb.velocity = new Vector2(0f, 0f);
         isDead = true;
         anim.Play("Death");
-        yield return new WaitForSeconds(0.8f);
-        Destroy(gameObject);
+        Instantiate(gem, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);       
     }
 }

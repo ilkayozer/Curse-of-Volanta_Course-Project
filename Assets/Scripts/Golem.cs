@@ -27,7 +27,7 @@ public class Golem : Creature
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         hp = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
     }
 
 

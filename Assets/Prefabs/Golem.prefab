@@ -198,8 +198,9 @@ MonoBehaviour:
   anim: {fileID: 6467748192554145444}
   rb: {fileID: 6467748192554145449}
   isDead: 0
+  gem: {fileID: 5840159861146401605, guid: 2c8102f6dddfabe408ef1b3b35f1f615, type: 3}
   golemMovementSpeed: 5
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 3111296297761294651, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
   ability: {fileID: 1977106341}
 --- !u!95 &6467748192554145444
 Animator:
