@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < -20)
         {
-            Death();
+            StartCoroutine(Death());
         }
 
         if (isDashing || isAttacking)
