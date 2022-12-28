@@ -208,6 +208,7 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             currentGem += 5;
         }
+        PlayerPrefs.SetInt("Gems", currentGem);
         gemBar.SetGem(currentGem);
     }
 }
