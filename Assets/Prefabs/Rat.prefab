@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d6c6ececd6fb843a7628b9cb829b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   isHitting: 0
   anim: {fileID: 4832224533773732885}
   rb: {fileID: 4832224533773732880}

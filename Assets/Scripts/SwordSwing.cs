@@ -20,7 +20,7 @@ public class SwordSwing : MonoBehaviour
                 else
                 {
                     StartCoroutine(collider.GetComponent<Creature>().TakeDamage());
-                    Debug.Log("vurdun");
+                    collider.GetComponent<Creature>().health -= 10;
                 }        
             }
         }

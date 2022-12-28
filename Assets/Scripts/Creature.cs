@@ -24,7 +24,7 @@ public class Creature : MonoBehaviour
     {
         rb.velocity = new Vector2(0f, 0f);
         isDead = true;
-        anim.Play("Golem_Death_A");
+        anim.Play("Death");
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
 
