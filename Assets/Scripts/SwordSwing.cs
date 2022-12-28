@@ -13,14 +13,14 @@ public class SwordSwing : MonoBehaviour
         {
             if (collider.gameObject.tag == "Enemy")
             {
+                collider.GetComponent<Creature>().health -= 10;
                 if (collider.GetComponent<Creature>().health <= 0)
                 {
                     StartCoroutine(collider.GetComponent<Creature>().Death());
                 }
                 else
                 {
-                    StartCoroutine(collider.GetComponent<Creature>().TakeDamage());
-                    collider.GetComponent<Creature>().health -= 10;
+                    StartCoroutine(collider.GetComponent<Creature>().TakeDamage());                  
                 }        
             }
         }

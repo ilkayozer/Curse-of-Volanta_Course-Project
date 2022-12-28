@@ -7,18 +7,6 @@ public class EnergyBolt : MonoBehaviour
     public float energyBoltSpeed;
     public Rigidbody2D rb;
 
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         rb.AddForce(transform.right * energyBoltSpeed, ForceMode2D.Impulse);
@@ -26,7 +14,7 @@ public class EnergyBolt : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             if (collision.GetComponent<Creature>().health <= 0)
             {
@@ -40,4 +28,6 @@ public class EnergyBolt : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
