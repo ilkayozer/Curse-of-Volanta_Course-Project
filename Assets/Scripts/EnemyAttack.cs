@@ -14,15 +14,7 @@ public class EnemyAttack : MonoBehaviour
         {
             if (collider.gameObject.tag == "Player")
             {
-                collider.GetComponent<Player>().health -= 10;
-                if (collider.GetComponent<Player>().health <= 0)
-                {
-                    StartCoroutine(collider.GetComponent<Player>().Death());
-                }
-                else
-                {
-                    StartCoroutine(collider.GetComponent<Player>().PlayerHit());
-                }
+                StartCoroutine(collider.GetComponent<Player>().PlayerHit());
             }
         }
     }

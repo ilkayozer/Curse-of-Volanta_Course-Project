@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxcol;
     public LayerMask jumpableGround;
 
-    private HealthBar healthBar;
-    public int health = 100;
-    private int maxHealth = 100;
+    public HealthBar healthBar;
+    public int currentHealth;
+    public int maxHealth = 100;
 
     private bool canDash = true;
     private bool isDashing = false;
@@ -38,10 +38,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth;
         boxcol= GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
     }
 
 
@@ -153,9 +154,19 @@ public class Player : MonoBehaviour
     {
         if (!isDashing)
         {
-            isHitting = true;
-            anim.Play("Hurt");
-            yield return new WaitForSeconds(0.4f);
+            currentHealth -= 10;
+            healthBar.SetHealth(currentHealth);
+            if (currentHealth <= 0)
+            {
+                StartCoroutine(Death());
+            }
+            else
+            {
+                isHitting = true;
+                anim.Play("Hurt");
+                yield return new WaitForSeconds(0.4f);
+            }
+            
         }
         isHitting = false;
     }

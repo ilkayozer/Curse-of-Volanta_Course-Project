@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
-    public int health = 100;
+    public int health;
 
     public bool isHitting = false;
     public Animator anim;
