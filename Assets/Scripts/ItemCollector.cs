@@ -11,13 +11,13 @@ public class ItemCollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Gem1"))
+        if (collision.gameObject.tag == "Gem1")
         {
             Destroy(collision.gameObject);
             gem++;
             gemText.text = "GEMS: " + gem;
         }
-        if (collision.gameObject.CompareTag("Gem5"))
+        else if (collision.gameObject.tag == "Gem5")
         {
             Destroy(collision.gameObject);
             gem = gem + 5;
