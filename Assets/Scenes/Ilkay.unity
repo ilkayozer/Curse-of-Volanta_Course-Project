@@ -140214,6 +140214,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 215481573}
+    - target: {fileID: 3111296297761294650, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
+      propertyPath: playerMovementSpeed
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3111296297761294651, guid: 4a684051c244df444b1f7f95d2df5320, type: 3}
       propertyPath: m_RootOrder
       value: 1
