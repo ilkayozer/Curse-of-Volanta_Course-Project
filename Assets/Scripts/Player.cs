@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -46,9 +47,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDead)
+        if (transform.position.y < -20)
         {
-            return;
+            Death();
         }
 
         if (isDashing || isAttacking)
@@ -165,8 +166,11 @@ public class Player : MonoBehaviour
         isDead = true;
         anim.Play("Death");
         yield return new WaitForSeconds(1.1f);
-        Destroy(gameObject);
+        Invoke(nameof(ReloadLevel), 0.5f);
     }
 
-
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
