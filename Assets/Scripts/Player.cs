@@ -208,7 +208,15 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             currentGem += 5;
         }
+        else if (collision.gameObject.tag == "Potion")
+        {
+            Destroy(collision.gameObject);
+            currentHealth += 20;
+        }
         PlayerPrefs.SetInt("Gems", currentGem);
         gemBar.SetGem(currentGem);
+        healthBar.SetHealth(currentHealth);
     }
+
+    
 }
