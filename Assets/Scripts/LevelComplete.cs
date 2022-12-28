@@ -16,7 +16,7 @@ public class LevelComplete : MonoBehaviour
 
     private void Start()
     {
-        GemText.text ="X"+ GemScore.ToString();
+        GemText.text ="X "+ GemScore.ToString();
     }
    
 
