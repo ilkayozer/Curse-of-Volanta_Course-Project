@@ -55,7 +55,7 @@ public class Golem : Creature
             }
         }
 
-        else if (dirEnemy < 10f && dirEnemy > -10f)
+        else if (dirEnemy < 6f && dirEnemy > -6f)
         {
             if (dirEnemy > 0f)
             {
